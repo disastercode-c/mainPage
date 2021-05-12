@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SmartBot</title>
+    <link rel="shortcut icon" href="/assets/img/LogoSmartBot.png" type="image/x-icon">
+    <!-- Custom fonts for this template-->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/font/bootstrap-icons.css">
+    <!-- Custom styles for this template-->
+    <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/datatables/dataTables.bootstrap4.css">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon">
+                    <img class="img-fluid px-3 px-sm-4 mt-1 mb-1" src="/assets/img/LogoSmartBot.png" alt="logo"
+                        style="width: 9rem;">
+                </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+
+            <li class="nav-item active">
+                <a onclick="back()" class="nav-link" href="#">
+                    <i class="fas fa-home"></i>Inicio</a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Herramientas</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-bs-parent="#accordionSidebar">
+                    <div class="bg-gradient-warning collapse-inner rounded">
+                        <h6 class="collapse-header" style="color:lightcyan">Herramientas disponibles:</h6>
+                        <a class="collapse-item text-white" href="/detalles">Comparar Servidores</a>
+                        <a class="collapse-item text-white" onclick="getHistoricInfo()" href="#">Ver Históricos
+                            Ambiente</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="/lienzo" class="nav-link">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Ver recorrido</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="/door-details" class="nav-link">
+                    <i class="fas fa-stopwatch"></i>
+                    <span>Detalle puerta</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Extras
+            </div>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" onclick="renderTable()" href="#">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Lista Servidores</span></a>
+            </li>
+
+            <hr class="sidebar-divider">
+            <div class="sidebar-brand-icon vertical-align-end" style="margin-top: -4em; margin-left:1em;width:10vw;">
+                <img src="/assets/img/entel-logo.svg" alt="entel-logo">
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content" class="bg-dark">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-dark bg-gradient-warning topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline small">{{user.nombre}}</span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h1 mb-0 text-light">Entel - Darío Urzúa</h1>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div id="infoSensores" class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-dark shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                                Humedad</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">60%</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-tint fa-2x" style="color:cornflowerblue"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-dark shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                                temperatura</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">24.2°C</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-temperature-high fa-2x" style="color:firebrick"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-dark shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">PPM
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">523</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-burn fa-2x" style="color: darkgrey"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+
+                    <div id="graficoServidores" class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-dark">Servidores<br><span><small
+                                                style="color:gray">Haga click en una barra para más
+                                                detalles</small></span></h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-4 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-dark">Estado de puerta</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body" style="height:22.8em">
+                                    <div class="pt-4 pb-2">
+                                        <div class="doortime p-2">
+                                            <i class="far fa-clock fa-5x" style="color:goldenrod"></i><span class="p-2"
+                                                style="color:darkslategrey">Tiempo puerta abierta:
+                                                {{door.tiempo}} segs.</span>
+                                        </div>
+                                        <div class="doorstate p-2 text-end" style="margin-top:38px;">
+                                            {{#ifcond door.estadoPuerta "Abierto"}}<i class="fas fa-door-open fa-5x"
+                                                style="color:saddlebrown"></i>
+                                            {{else}}<i class="fas fa-door-closed fa-5x p-2"></i>{{/ifcond}}<span
+                                                class="p-2" style="color:darkslategrey">Estado puerta:
+                                                {{door.estadoPuerta}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Content Row -->
+            <div id="cammap" class="row bg-dark px-4">
+                <!-- Content Column -->
+                <div class="col-lg-6 mb-4 ">
+                    <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary d-inline-block">Cámara Inspector</h6>
+                            <button id="cambtn1" class="btn btn-danger btn-circle cambtn d-none"
+                                onclick="ocultarCam()"><i class="bi bi-camera-video-off-fill"></i></button>
+                            <button id="cambtn2" class="btn btn-success btn-circle cambtn" onclick="verCam()"><i
+                                    class="bi bi-camera-video-fill"></i></button>
+                        </div>
+                        <div class="card-body align-self-center d-none" id="camarita">
+                            <img src="http://10.10.8.13:9000/video_feed" style="width:31.6rem"></img>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <!-- Illustrations -->
+                    <div class="card shadow mb-4" style="height:38.5rem">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Mapa </h6>
+                        </div>
+                        <div class="card-body align-self-center">
+                            <img class="img-fluid mt-5" style="width:47.6rem" src="/assets/img/Map_Image_2.png" alt="">
+                            <a target="_blank" rel="nofollow" href="#" data-bs-toggle="modal"
+                                data-bs-target="#modalmap">Ampliar mapa &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Modal Map -->
+                    <div class="modal fade" id="modalmap" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Mapa ubicación</h5>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="/assets/img/Map_Image_2.png" class="vw-80 vh-70" alt="">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="historic" class="d-none bg-dark vh-100">
+                <div class="text-center">
+                    <h3 id="titulohistorico" class="display-3 p-4 mt-3 text-white"></h3>
+                </div>
+                <canvas id="historicGraphics" style="margin:auto; width:80vw; height:50vh;"></canvas>
+                <div class="text-center p-4">
+                    <a href="#" id="btn-historic" onclick="back()" class="btn btn-success">Volver</a>
+                </div>
+            </div>
+
+            <div id="historicAmb" class="row vh-120 mx-auto bg-dark d-none">
+                <div class="col-auto mx-auto">
+                    <h3 class="text-center text-white p-4 my-3">Humedad</h3><canvas id="historicHum"
+                        style="margin:auto; width:80vw; height:30vh;"></canvas>
+                </div>
+                <div class="col-auto mx-auto p-4 my-3">
+                    <h3 class="text-center text-white">Temperatura</h3><canvas id="historicTemp"
+                        style="margin:auto; width:80vw; height:30vh;"></canvas>
+                </div>
+                <div class="col-auto mx-auto p-4 my-3">
+                    <h3 class="text-center text-white">Particualdo</h3><canvas id="historicPpm"
+                        style="margin:auto; width:80vw; height:30vh;"></canvas>
+                </div>
+            </div>
+
+            <div id="tablaServer" class="container-fluid d-none p-2">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-inline-block">
+                        <h6 class="m-0 font-weight-bold text-primary ">Listado Servidores</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Servidor</th>
+                                        <th>Temperatura</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-gradient-warning">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span style="color:lightcyan">Copyright &copy; Smartbot 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+
+    <!-- End of Content Wrapper -->
+
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Logout" si quiere terminar con su sesión activa.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" onclick="cierraSesion()" href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/axios.min.js"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/scripts/sb-admin-2.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/assets/js/chart.min.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="/scripts/script.js"></script>
+    <script src="/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="/scripts/createTable.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="/scripts/doorHelper.js"></script>
+    <script src="/vendor/toastr/toastr.min.js"></script>
+    <script src="/scripts/alertPopup.js"></script>
+
+</body>
+
+</html>

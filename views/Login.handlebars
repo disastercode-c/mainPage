@@ -1,0 +1,27 @@
+{{> scripts}}
+<div class="row vh-100 mx-0 log">
+    <div id="login" class="px-5 py-3 m-auto card text-center wrapper">
+        <h4 class=>Iniciar Sesión</h4>
+        <small class="mb-2">Entel Darío Urzúa</small>
+        <div class="input-group mb-3">
+            <span class="input-group-text " id="inputGroup-sizing-default"><i class="fas fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="Ingrese su usuario" aria-label="Username" id="username"
+                value="admin" />
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text d-flex justify-content-center" id="inputGroup-sizing-default"><i
+                    class="fas fa-key"></i></span>
+            <input type="password" class="form-control" placeholder="Ingrese su clave" aria-label="Username"
+                id="password" value="admin123" />
+        </div>
+
+        <button type="button" class="btn btn-dark w-50 m-auto" data-mdb-ripple-color="dark"
+            onclick="login()">Ingresar</button>
+        <a href="/" class="mt-2 text-light">Volver</a>
+    </div>
+</div>
+
+<script src="/assets/js/axios.min.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+<script src="/scripts/login.js"></script>

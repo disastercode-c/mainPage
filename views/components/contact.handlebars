@@ -1,0 +1,117 @@
+<section id="contact" class="contact d-none">
+    <div class="container page-bgc">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box">
+                    <h2 class="title mt0">¿Quieres hablar con nosotros?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="boxed">
+                <div class="col-sm-12">
+                    <p class="inner-p">
+                        Para brindarte una mejor atención, contamos con distintas alternativas para que puedas ponerte
+                        en contacto con nosotros.
+                        Ya sea por teléfono, correo de contacto o personalmente, estaremos encantados de atenderte.
+                        Envíanos tus comentarios o consultas y responderemos a la brevedad.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row boxed">
+            <div id="map" class="col-sm-12 mb-0">
+                <iframe class="map_canvas"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.600139683004!2d-70.5666210848017!3d-33.40759478078624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cedd1d330ced%3A0xe87ea283f5493a98!2sAv.%20Apoquindo%206410%2C%20Las%20Condes%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1620398537897!5m2!1ses-419!2scl"
+                    frameborder="0" loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="row boxed" id="contact-zone">
+            <div class="col-sm-8">
+                <h4>Contáctanos</h4>
+                <form class="contact-form" id="contactForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control m-2" placeholder="Nombres" id="fname"
+                                    name="fname" required>
+                            </div> <!-- /.form-group -->
+                        </div> <!-- /.col-sm-6 -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control m-2" placeholder="Apellidos" id="lname"
+                                    name="lname" required>
+                            </div> <!-- /.form-group -->
+                        </div> <!-- /.col-sm-6 -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control m-2" placeholder="Email" id="email" name="email"
+                                    required>
+                            </div> <!-- /.form-group -->
+                        </div> <!-- /.col-sm-6 -->
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control m-2" placeholder="Número de contacto" id="phone"
+                                    name="phone">
+                            </div> <!-- /.form-group -->
+                        </div> <!-- /.col-sm-6 -->
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea class="form-control m-2" rows="6" placeholder="Su mensaje aquí..."
+                                    name="message" id="msg"></textarea>
+                            </div> <!-- /.form-group -->
+                        </div> <!-- /.col-sm-12 -->
+                        <div class="text-center mt20 col-sm-12">
+                            <button type="submit" class="btn btn-robot pull-left" id="cfsubmit">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="contactFormResponse"></div>
+            </div> <!-- /.col-sm-8 -->
+            <div class="col-sm-4 text-orange">
+                <h4>Detalles de contacto</h4>
+                <div class="row mt-4">
+                    <div class="col-xs-9">
+                        <h5>Dirección</h5>
+                        <p class="contact-detail text-white">
+                            Av Apoquindo 6410 oficina 605. Las Condes. Santiago de Chile.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h6>Teléfono</h6>
+                        <p class="contact-detail  text-white">
+                            +56 9 962 710 52<br>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h5>Email</h5>
+                        <p class="contact-detail  text-white">
+                            info@smartbot.la
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const form = document.getElementById("contactForm");
+    const fname = document.getElementById("fname").value;
+    const lname = document.getElementById("lname").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const msg = document.getElementById("msg").value;
+    form.addEventListener('submit', async(e) => {
+        e.preventDefault();
+        if(fname,lname,email,phone,msg){
+           const info = await axios.post('/index', {fname,lname,email,phone,msg})
+           console.log(info)
+        }
+    })
+</script>

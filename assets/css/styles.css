@@ -1,0 +1,91 @@
+html{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  color: #000;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+}
+
+
+#revenue-tag {
+  border-radius: 0px !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+
+#sales-doughnut-chart-us,
+#sales-doughnut-chart-nl,
+#sales-doughnut-chart-de {
+  height: 140px;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+#page-views-spline-area-chart,
+#orders-spline-area-chart,
+#revenue-spline-area-chart {
+  height: 100px;
+  width: 100%;
+}
+
+#users-doughnut-chart,
+#users-spline-chart {
+  height: 280px;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+#users-countries-bar-chart {
+  height: 360px;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.copy_text {
+  font-family: PT Sans;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #fff;
+}
+
+footer{
+  position: absolute;
+  width: 100vw;
+}
+
+#login{
+  width:30%;
+  background: #fabe12;
+  border-radius: 25%;
+}
+
+.log{
+  background: #111;
+}
+
+.static{
+  background-image: url("/assets/img/Map_Image2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  border: solid 1px red;
+  height: 900px;
+}
+
+#roboc{
+  background-image: url('/assets/img/LogoSmartBot.png');
+  background-position: center;
+  background-size: cover;
+  position:relative;
+}

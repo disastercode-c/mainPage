@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/assets/img/LogoSmartBot.png" type="image/x-icon">
+    <title>SmartBot</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/ionicons.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+    <!-- Site Header -->
+    {{> siteHeader}}
+    <!-- Header -->
+    <section id="header" class="main-header">
+        <div class="container">
+            <div class="row">
+                <nav class="navbar navbar-dark bg-dark nav-pills flex-column flex-sm-row ">
+                    <a class="flex-sm-fill text-sm-center nav-link" aria-current="page" onclick="viewHome()"
+                        href="#product">Home</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" onclick="viewAbout()" href="#about">Nosotros</a>
+                    <a class="flex-sm-fill text-sm-center nav-link" onclick="viewContact()" href="#contact"
+                        tabindex="-1" aria-disabled="true">Contacto</a>
+                    {{!-- <a class="flex-sm-fill text-sm-center nav-link" onclick="viewNews()" href="#news">Novedades</a> --}}
+                    <a id="login" class="flex-sm-fill text-sm-center nav-link" href="/login">Iniciar
+                        Sesión</a>
+                    <a id="admin" class="flex-sm-fill text-sm-center nav-link d-none" onclick="renderAdmin()"
+                        href="#">Administración</a>
+                </nav>
+            </div>
+            <div class="intro row">
+                <div class="overlay"></div>
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6 col-sm-offset-6">
+                    <h2 class="header-quote">SmartBot</h2>
+                </div>
+            </div> <!-- /.intro.row -->
+        </div> <!-- /.container -->
+        <div class="nutral"></div>
+    </section> <!-- /#header -->
+    <!-- Product -->
+    <section id="product" class="product">
+        <div class="container site-products-bg pb-3">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-box">
+                        <h2 class="title text-orange">Algunos de nuestros <span class="text-white">Robots</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row imgRobots">
+                <div class="col-sm-12 col-md-4 p-4">
+                    <div class="card " data-toggle="tooltip" data-placement="bottom" title="Tiger-5-2-IR">
+                        <img class="card-img-top" src="/assets/img/robots/tiger52ir.png" alt="Card-image-Tiger-IR">
+                        <div class="card-body">
+                            <h5 class="card-title">Tiger 5.2 IR</h5>
+                            <button type="button" class="btn btn-robot" data-toggle="modal" data-target="#modalTiger">
+                                Ver Más...
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 p-4">
+                    <div class="card" data-toggle="tooltip" data-placement="bottom" title="Max-V3">
+                        <img class="card-img-top" src="/assets/img/robots/max2.png" alt="Card-image-Max-V3">
+                        <div class="card-body">
+                            <h5 class="card-title">Max V3</h5>
+                            </p>
+                            <button type="button" class="btn btn-robot" data-toggle="modal" data-target="#modalMax">
+                                Ver Más...
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 p-4">
+                    <div class="card " data-toggle="tooltip" data-placement="bottom" title="NEO/EVA-V2">
+                        <img class="card-img-top" src="/assets/img/robots/neo2.png" alt="Card-image-Suricata">
+                        <div class="card-body">
+                            <h5 class="card-title">NEO/EVA V2</h5>
+                            <button type="button" class="btn btn-robot" data-toggle="modal" data-target="#modalEva">
+                                Ver Más...
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 p-4">
+                    <div class="card" data-toggle="tooltip" data-placement="bottom" title="Lynce">
+                        <img class="card-img-top" src="/assets/img/robots/lynce2.png" alt="Card-image-Lynce">
+                        <div class="card-body">
+                            <h5 class="card-title">Lynce</h5>
+                            <button type="button" class="btn btn-robot" data-toggle="modal" data-target="#modalLynce">
+                                Ver Más...
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 p-4">
+                    <div class="card" data-toggle="tooltip" data-placement="bottom" title="S5.2-Tiger">
+                        <img class="card-img-top" src="/assets/img/robots/tiger2.png" alt="Card-image-S5.2-Tiger">
+                        <div class="card-body">
+                            <h5 class="card-title">S5.2 Tiger</h5>
+                            <button type="button" class="btn btn-robot" data-toggle="modal" data-target="#modalSTiger">
+                                Ver Más...
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="classic-title">
+                        <div class="stiker">
+                            <h3 class="inner-stiker">¿Por qué Smartbot?</h3>
+                        </div>
+                        <div class="incline-div"></div>
+                    </div>
+                </div>
+                <div class="boxed row text-white">
+                    <div class="col-sm-4">
+                        <p>
+                            El mundo actual exige modernizarse e innovar para hallar la mejor solución a nuestros
+                            problemas.
+                            Hoy en día esta tarea se ha visto simplificada gracias a los avances de la tecnología y la
+                            ciencia.
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>
+                            En la búsqueda por hallarse en la vanguardia y la innovación, Smartbot ofrece soluciones
+                            inteligentes para
+                            las necesidades y/o dolores frente a los que se halle enfrentado.
+                            Cuenta con una diversidad de modelos que otorgan las opciones necesarios para sanar el dolor
+                            que nos aqueja.
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>
+                            Es por estos y muchos más motivos que si se encuentra en la búsqueda de una solución
+                            innovadora, diferente, moderna,
+                            tecnológica, vanguardista y con una variedad de modelos que ayuden a mejorar los procesos de
+                            trabajo, es una decisión inteligente.
+                            Elige smart, elige SMARTBOT.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact -->
+    {{> contact}}
+
+    {{> about}}
+
+    {{> news}}
+
+    {{> footer}}
+
+    {{> modals}}
+
+
+
+    <!-- Scripts -->
+    <script src="/assets/js/jQuery.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+    <script src="/assets/js/axios.min.js"></script>
+    <script src="/scripts/inicio.js"></script>
+</body>
+
+</html>
