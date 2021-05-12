@@ -10,6 +10,4 @@ const alertas = async()=>{
     }
 }
 
-setInterval(() => {
-    alertas();
-}, 1000);
+//setInterval(alertas, 5000)

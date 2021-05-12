@@ -102,18 +102,20 @@ const getHistoricoConFecha = async (fechaInicio, fechaTermino, server1, server2)
     }
 }
 
-const getInfoDoorWDate = async (init, end)=>{
+const getInfoDoorWDate = async (fechaInicio, fechaTermino)=>{
   try{
-      const query = `SELECT * FROM puerta WHERE fecha BETWEEN '${init}' AND '${end}'`
-      const rows = await sql.query(query);
-      console.log(rows[0])
-      return rows[0]
+      const query = `SELECT MAX(doorTime) as max, fecha from puerta where fecha BETWEEN '${fechaInicio}' and '${fechaTermino}'`
+      const maxWDate = await sql.query(query);
+      const query2 = `SELECT COUNT(*) as count from puerta where fecha BETWEEN '${fechaInicio}' and '${fechaTermino}'`
+      const countWDate = await sql.query(query2)
+      const query3 = `SELECT SUM(doorState) as sum from puerta where fecha BETWEEN '${fechaInicio}' and '${fechaTermino}'`
+      const sumSegs = await sql.query(query3)
+      return {maxSeg: maxWDate[0], countOpen: countWDate[0], sumSegs: sumSegs[0]}
   }catch(e){
     console.log(e)
     return e
   }
 }
-
 
 const login = async(username, password)=> {
   try {

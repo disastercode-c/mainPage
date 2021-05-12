@@ -9,6 +9,7 @@ const {
   getTempServers,
   infoDoor,
   convertDateAmb,
+  convertDoorData
 } = require("./scripts/renderData");
 const {
   getTempServ,
@@ -25,7 +26,6 @@ const {
 } = require("./db/query");
 require("dotenv").config();
 const Handlebars = require("handlebars");
-const enviar = require("./mailer/mailer");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -153,9 +153,6 @@ app.get("/new-home", (req,res)=>{
     res.render("newHome", {layout: "newHome"})
 })
 
-app.get('/lienzo', (req,res)=>
-{res.render('lienzo', {layout:'lienzo'})})
-
 app.get("/alerts", async(req,res)=>{
   const info = await getInfoAlarmas();
   res.status(200).send(info)
@@ -178,4 +175,10 @@ app.get("/door-details", async(req,res)=>{
   const fechaMax = result.maxTime[0].fecha
   const countOpen = result.countOpen[0].count
   res.render("DoorDetails", {layout: 'DoorDetails', max: maxTime, fechaMax: fechaMax, count: countOpen})
+})
+
+app.post("/puerta", async(req,res)=>{
+  const {fechaInicio, fechaTermino} = req.body
+  const result = await getInfoDoorWDate(fechaInicio, fechaTermino);
+  res.send(result);
 })
