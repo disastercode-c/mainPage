@@ -1,18 +1,18 @@
 const nodemailer = require("nodemailer");
 
-const enviar = (from,umail,subject, text, phone)=>{
+const enviar = (from,umail, text, phone)=>{
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: 'smartbot.la',
         auth: {
-            user: 'smartbot@smartbot.la',
-            pass: '123456',
+            user: 'soporte@smartbot.la',
+            pass: 'soporte2020',
         }
     })
 
     const mailOption = {
-        from : `'${from}' - '<${umail}>'`,
-        to: "smartbot@smartbot.la",
-        subject,
+        from : umail,
+        to: "soporte@smartbot.la",
+        subject: 'contact zone',
         text: `${text} - número de contacto: ${phone}  ` 
     }
 
@@ -22,5 +22,8 @@ const enviar = (from,umail,subject, text, phone)=>{
     });
     return sendCorreo;
 }
+
+
+
 
 module.exports = enviar;

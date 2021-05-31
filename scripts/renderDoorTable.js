@@ -8,3 +8,12 @@ const renderDoorTable = ()=>{
         
     }
 }   
+
+const back = () => {
+    let token = localStorage.getItem("token-usuario");
+    if (token) {
+      window.location = `/home?token=${token}`;
+    } else {
+      window.location = "/login";
+    }
+  };

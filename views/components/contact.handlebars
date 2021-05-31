@@ -34,14 +34,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="text" class="form-control m-2" placeholder="Nombres" id="fname"
+                                <input type="text" class="form-control m-2" placeholder="Nombre Completo" id="fname"
                                     name="fname" required>
-                            </div> <!-- /.form-group -->
-                        </div> <!-- /.col-sm-6 -->
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control m-2" placeholder="Apellidos" id="lname"
-                                    name="lname" required>
                             </div> <!-- /.form-group -->
                         </div> <!-- /.col-sm-6 -->
                         <div class="col-sm-6">
@@ -63,7 +57,7 @@
                             </div> <!-- /.form-group -->
                         </div> <!-- /.col-sm-12 -->
                         <div class="text-center mt20 col-sm-12">
-                            <button type="submit" class="btn btn-robot pull-left" id="cfsubmit">Enviar</button>
+                            <button class="btn btn-robot pull-left" id="cfsubmit" onclick="send()">Enviar</button>
                         </div>
                     </div>
                 </form>
@@ -101,17 +95,9 @@
 </section>
 
 <script>
-    const form = document.getElementById("contactForm");
-    const fname = document.getElementById("fname").value;
-    const lname = document.getElementById("lname").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const msg = document.getElementById("msg").value;
-    form.addEventListener('submit', async(e) => {
-        e.preventDefault();
-        if(fname,lname,email,phone,msg){
-           const info = await axios.post('/index', {fname,lname,email,phone,msg})
-           console.log(info)
-        }
-    })
+
+    const send = ()=>{
+        let fName = document.getElementById("fname")
+        
+    }
 </script>

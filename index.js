@@ -20,8 +20,7 @@ const {
   login,
   getInfoAlarmas,
   getInfoDoor,
-  getInfoDoorWDate
-
+  getInfoDoorWDate,
 } = require("./db/query");
 require("dotenv").config();
 const Handlebars = require("handlebars");
@@ -39,7 +38,7 @@ app.engine(
 );
 app.use("/assets", express.static(__dirname + "/assets"));
 app.use("/scripts", express.static(__dirname + "/scripts"));
-app.use("/vendor", express.static(__dirname + "/vendor"))
+app.use("/vendor", express.static(__dirname + "/vendor"));
 
 Handlebars.registerHelper("ifcond", (v1, v2, options) => {
   if (v1 === v2) {
@@ -54,11 +53,10 @@ app.get("/", (req, res) => {
   res.render("Index", { layout: "Index" });
 });
 
-
-app.get("/door", async(req,res)=>{
+app.get("/door", async (req, res) => {
   const infoPuerta = await getStateDoor();
-  res.send(infoPuerta)
-})
+  res.send(infoPuerta);
+});
 
 app.get("/home", async (req, res) => {
   const { token } = req.query;
@@ -69,10 +67,21 @@ app.get("/home", async (req, res) => {
         res.status(401).send({ error: "401 UNAUTHORIZED", message });
       } else {
         const usuario = data;
-        const result = await getDataAmb();
-        const door = await getStateDoor();
-        const dataDoor = infoDoor(door);
-        res.render("newHome", { layout: "newHome", info: result, door: dataDoor, user: usuario});
+        if (data.nombre == "admin") {
+          const result = await getDataAmb();
+          const door = await getStateDoor();
+          const dataDoor = infoDoor(door);
+          res.render("newHome", {
+            layout: "newHome",
+            info: result,
+            door: dataDoor,
+            user: usuario,
+          });
+        }else if(data.nombre == "hortiadmin"){
+          res.render("Hortihome", {layout: "Hortihome"})
+        }else if(data.nombre == "patroladmin"){
+          res.render("Patrolhome", {layout: "Patrolhome"})
+        }
       }
     });
   } catch (e) {
@@ -109,12 +118,8 @@ app.get("/historic_amb", async (req, res) => {
 });
 
 app.post("/historico-fecha", async (req, res) => {
-  const {
-    fechaInicio,
-    fechaTermino,
-    selectedOption,
-    selectedOption2,
-  } = req.body;
+  const { fechaInicio, fechaTermino, selectedOption, selectedOption2 } =
+    req.body;
   const info = await getHistoricoConFecha(
     fechaInicio,
     fechaTermino,
@@ -142,40 +147,44 @@ app.post("/login", async (req, res) => {
       const token = jwt.sign(user, "secret");
       res.status(200).send({ token: token });
     } else {
-      res.status(404).send("Not Found");
+      res.send({error:"404" , message: "Nombre de usuario o contraseña incorrectos"});
     }
   } catch (err) {
     res.status(500).send({ error: "500 Internal Server Error", message: err });
   }
 });
 
-app.get("/new-home", (req,res)=>{
-    res.render("newHome", {layout: "newHome"})
-})
 
-app.get('/lienzo', (req,res)=>
-{res.render('lienzo', {layout:'lienzo'})})
+app.get("/lienzo", (req, res) => {
+  res.render("lienzo", { layout: "lienzo" });
+});
 
-app.get("/alerts", async(req,res)=>{
+app.get("/alerts", async (req, res) => {
   const info = await getInfoAlarmas();
-  res.status(200).send(info)
-})
+  res.status(200).send(info);
+});
 
-app.post("/index", async(req,res)=>{
-  const {fname,lname,email,phone,msg} = req.body
+app.post("/index", async (req, res) => {
+  const { fname, lname, email, phone, msg } = req.body;
   let fullName = `${fname} ${lname}`;
-  try{
-    let result = enviar(fullName,email,msg,phone);
-    res.send(result)
-  }catch(e){
-    res.status(500).send('No ha sido posible enviar el correo')
+  try {
+    let result = enviar(fullName, email, msg, phone);
+    console.log(result)
+    res.send(result);
+  } catch (e) {
+    res.status(500).send("No ha sido posible enviar el correo");
   }
-})
+});
 
-app.get("/door-details", async(req,res)=>{
+app.get("/door-details", async (req, res) => {
   const result = await getInfoDoor();
-  const maxTime = result.maxTime[0].max
-  const fechaMax = result.maxTime[0].fecha
-  const countOpen = result.countOpen[0].count
-  res.render("DoorDetails", {layout: 'DoorDetails', max: maxTime, fechaMax: fechaMax, count: countOpen})
-})
+  const maxTime = result.maxTime[0].max;
+  const fechaMax = result.maxTime[0].fecha;
+  const countOpen = result.countOpen[0].count;
+  res.render("DoorDetails", {
+    layout: "DoorDetails",
+    max: maxTime,
+    fechaMax: fechaMax,
+    count: countOpen,
+  });
+});

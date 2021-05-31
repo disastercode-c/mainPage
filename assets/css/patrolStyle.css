@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, 'VT323', monospace, 'Aldrich';
+}
+
+
+.bg-gradient-warning, .site-header-bg{
+    background: #fabe12
+}
+
+.laser, .foto{
+    height: 85vh;
+}
+
+.stadistics{
+    background: #393835;
+    color: snow;
+}
+
+.interior{
+    height: 20rem;
+    color: snow;
+    border: 1px solid rgb(18, 190, 233);
+    margin-top: 4.6em
+}
+
+.laser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cloud {
+    height: 85vh;
+    width: 60vw;
+    color: snow;
+}
+
+.main-content{
+    background: #393835;
+    color: #fff;
+    position: relative;
+}
+
+.sticky-footer{
+    color: snow;
+    bottom: 0;
+    width: 100%;
+}
+
+#threatDetectedPhoto, #streamingVideo, #info-metrica{
+    width: 100%;
+    height: 90%;
+}
+
+canvas {
+    max-width: 100%;
+    max-height: 720px;
+}
+
+.imglogo{
+    width: 12%;
+    margin-left: 15rem;
+
+}
+
+
+
+.titulo{
+    font-size: 60px;
+    font-family:'Aldrich' ;
+    color: snow;
+    margin-left: 2em;
+}
+@media (min-width: 768px){
+    .metrics {
+        border-top: 1px solid snow;
+        height: 3.2rem;
+        width: 100%;
+    }
+
+    .foto {
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid snow;
+    }
+}
+
+.btn-logout{
+    margin-left: 15em;
+    margin-top: 1.8em;
+}

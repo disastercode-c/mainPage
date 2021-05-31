@@ -1769,9 +1769,9 @@ pre code {
 .form-control:focus {
   color: #6e707e;
   background-color: #fff;
-  border-color: #bac8f3;
+  border-color: #fabe12;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(209, 179, 9, 0.25);
 }
 .form-control::-webkit-input-placeholder {
   color: #858796;
@@ -9084,7 +9084,7 @@ a:focus {
   background-color: #393835;
   background-image: linear-gradient(180deg, #393835 30%, #fabe12 100%);
   background-size: cover;
-}
+} 
 .bg-gradient-secondary {
   background-color: #858796;
   background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
@@ -9900,7 +9900,7 @@ a:focus {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  
+  border-right: 3px solid #fabe12;
 }
 .bg-register-image {
   background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);
@@ -10316,4 +10316,39 @@ body.sidebar-toggled footer.sticky-footer {
 
 .cambtn{
  margin-left: 48em;
+}
+
+.titulo{
+  font-family: 'Padauk', sans-serif;
+}
+
+.logoNav {
+  width: 8%;
+}
+
+.map-area {
+  position: relative;
+  height: 10rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .map-area {
+    height: 35rem;
+  }
+}
+
+.main-info {
+  position: relative;
+  height: 15rem;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .main-info {
+    height: calc(16.5rem - 43px) !important;
+  }
+}
+
+.logsquare{
+  margin-top: 13em;
 }
