@@ -123,7 +123,7 @@
         let msg = document.getElementById("msg").value
 
         if(fName !="" && email !="" && phone !="" && msg !=""){
-            document.getElementById("cfsubmit").innerHTML = 'Enviando...<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+            document.getElementById("cfsubmit").innerHTML = 'Enviando...<span class="spinner-border spinner-border-sm text-info" role="status" aria-hidden="true"></span>'
             const payload = {fName, email, phone, msg}
             const result = await axios.post("/index", payload)
                 if(result){
