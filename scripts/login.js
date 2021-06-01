@@ -29,6 +29,7 @@ const login = async () => {
                 toastr.error("Usuario y/o Contraseña incorrecto/a", "atención")
             }else{
                 const {token} = data
+                localStorage.setItem('token-usuario', token)
                 window.location = `/Home?token=${token}`
             }
         }
@@ -53,3 +54,6 @@ passwordInput.addEventListener('focus', ()=>{
 })
 
 
+$("#password").on('keyup', (e)=>{if(e.key === 'Enter' || e.key === 13){
+    login();
+}})

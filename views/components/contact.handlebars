@@ -30,7 +30,7 @@
         <div class="row boxed" id="contact-zone">
             <div class="col-sm-8">
                 <h4>Contáctanos</h4>
-                <form class="contact-form" id="contactForm">
+                <div class="contact-form" id="contactForm">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -47,20 +47,21 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <input type="text" class="form-control m-2" placeholder="Número de contacto" id="phone"
-                                    name="phone">
+                                    name="phone" required>
                             </div> <!-- /.form-group -->
                         </div> <!-- /.col-sm-6 -->
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <textarea class="form-control m-2" rows="6" placeholder="Su mensaje aquí..."
-                                    name="message" id="msg"></textarea>
+                                    name="message" id="msg" required></textarea>
                             </div> <!-- /.form-group -->
                         </div> <!-- /.col-sm-12 -->
                         <div class="text-center mt20 col-sm-12">
                             <button class="btn btn-robot pull-left" id="cfsubmit" onclick="send()">Enviar</button>
+                            
                         </div>
                     </div>
-                </form>
+                </div>
                 <div id="contactFormResponse"></div>
             </div> <!-- /.col-sm-8 -->
             <div class="col-sm-4 text-orange">
@@ -91,13 +92,56 @@
                 </div>
             </div>
         </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     </div>
 </section>
 
 <script>
+    const send = async()=>{
+        let fName = document.getElementById("fname").value
+        let email = document.getElementById("email").value
+        let phone = document.getElementById("phone").value
+        let msg = document.getElementById("msg").value
 
-    const send = ()=>{
-        let fName = document.getElementById("fname")
-        
+        if(fName !="" && email !="" && phone !="" && msg !=""){
+            document.getElementById("cfsubmit").innerHTML = 'Enviando...<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
+            const payload = {fName, email, phone, msg}
+            const result = await axios.post("/index", payload)
+                if(result){
+                    document.getElementById("fname").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("phone").value = "";
+                    document.getElementById("msg").value = "";
+                    document.getElementById("cfsubmit").innerHTML = "Enviar"
+                    toastr.options = {
+                positionClass: 'toast-top-center',
+            }
+            toastr.success('Mensaje enviado satisfactoriamente')
+                }
+        }else if(fName =="" || email =="" || phone =="" || msg ==""){
+            toastr.options = {
+                positionClass: 'toast-top-center',
+            }
+            toastr.error('Debe rellenar todos los campos', '¡Faltan datos!')
+        }        
     }
 </script>

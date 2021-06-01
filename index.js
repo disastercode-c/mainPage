@@ -165,14 +165,26 @@ app.get("/alerts", async (req, res) => {
 });
 
 app.post("/index", async (req, res) => {
-  const { fname, lname, email, phone, msg } = req.body;
-  let fullName = `${fname} ${lname}`;
-  try {
-    let result = enviar(fullName, email, msg, phone);
-    console.log(result)
-    res.send(result);
-  } catch (e) {
-    res.status(500).send("No ha sido posible enviar el correo");
+  const {fName, email, phone, msg} = req.body
+  let tel = phone
+  try
+  {
+    if(tel != ""){
+      let result = await enviar(fName, email, phone, msg)
+      if(result){
+        res.send(result)
+      }
+    }else{
+      tel = 0;
+      let result = await enviar(fName, email, phone, msg)
+      if(result){
+        res.send(result)
+      }
+    }
+  }
+  catch(e){
+    console.log(e)
+    res.send(e)
   }
 });
 

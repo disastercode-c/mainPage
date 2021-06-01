@@ -1,29 +1,33 @@
 const nodemailer = require("nodemailer");
 
-const enviar = (from,umail, text, phone)=>{
-    const transporter = nodemailer.createTransport({
-        service: 'smartbot.la',
-        auth: {
-            user: 'soporte@smartbot.la',
-            pass: 'soporte2020',
-        }
-    })
+const enviar = async (nombre, email, phone, msg)=>{
 
-    const mailOption = {
-        from : umail,
-        to: "soporte@smartbot.la",
-        subject: 'contact zone',
-        text: `${text} - número de contacto: ${phone}  ` 
+    let smtpConfig = {
+        host: 'mail.smartbot.la',
+        secureConnection: "true",
+        port: 465,
+        auth: {
+            user: "soporte@smartbot.la",
+            pass: "soporte2020",
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
     }
 
-    const sendCorreo = transporter.sendMail(mailOption, (err,data)=>{
-        if(err) return err;
-        if(data) return(data)
-    });
-    return sendCorreo;
+
+    let transporter = nodemailer.createTransport(smtpConfig);
+
+    let mailOption = {
+        from : `'${nombre}' <${email}>`,
+        to: 'soporte@smartbot.la', 
+        subject: 'contacto web form',
+        text: `phone_user: ${phone} - message: ${msg}`
+    }
+
+    const envioCorreo = await transporter.sendMail(mailOption);
+
+    return envioCorreo;
 }
-
-
-
 
 module.exports = enviar;
