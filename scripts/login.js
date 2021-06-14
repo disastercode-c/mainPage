@@ -26,7 +26,7 @@ const login = async () => {
                 toastr.options = {
                     positionClass: 'toast-top-full-width',
                 }
-                toastr.error("Usuario y/o Contraseña incorrecto/a", "atención")
+                toastr.error("Usuario y/o Contraseña incorrecto/a", "¡ATENCIÓN!")
             }else{
                 const {token} = data
                 localStorage.setItem('token-usuario', token)

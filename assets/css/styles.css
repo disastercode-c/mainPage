@@ -61,7 +61,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 footer{
-  position: absolute;
   width: 100vw;
 }
 
@@ -88,4 +87,25 @@ footer{
   background-position: center;
   background-size: cover;
   position:relative;
+}
+
+.btn-control, .btn-stop-control{
+  font-size: 50px;
+}
+
+.btn-control {
+  color: #117711;
+}
+
+.btn-stop-control{
+  color: #b61515
+}
+
+#viewer-map {
+  height: 100%;
+  border: 1px solid red;
+}
+
+.control-viewer{
+  height: 46.7em;
 }

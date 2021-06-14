@@ -1,78 +1,179 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patrol</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/patrolStyle.css">
-    <script
-      src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"
-    ></script>
-    <script
-      src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"
-    ></script>
-    <script
-      src="https://static.robotwebtools.org/ros3djs/current/ros3d.js"
-    ></script>
-    <script
-      src="https://static.robotwebtools.org/threejs/r89/three.js"
-    ></script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/assets/img/steelFireLogo.jpeg" type="image/x-icon">
+  <title>Patrol</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/patrolStyle.css" />
+  <link rel="stylesheet" href="/assets/css/mainStyle.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+  <script src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+  <script src="https://static.robotwebtools.org/ros3djs/current/ros3d.js"></script>
+  <script src="https://static.robotwebtools.org/threejs/r89/three.js"></script>
 </head>
+
 <body onload="init()">
-    <div class="site-header-bg">
+  <div class="content">
+    <nav class="navbar navbar-expand navbar-light bg-gradient-dark topbar patrolbar static-top shadow">
+
+      <!-- Sidebar Toggle (Topbar) -->
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+      </button>
+
+      <!-- Topbar Navbar -->
+      <ul class="navbar-nav">
+        <li class="nav-item m-auto"><a href=""><img src="/assets/img/LogoSmartBot.png" class="logopatrol" />
+          </a>
+          <h1 class="patroltitle d-sm-none d-lg-inline">Smart Intruders
+            Detector</h1>
+        </li>
+        <div class="patrol-divider d-none d-sm-block"></div>
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow m-auto">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-white small">SteelFire</span>
+            <img class="img-profile rounded-circle" src="/assets/img/steelFireLogo.jpeg" />
+          </a>
+          <!-- Dropdown - User Information -->
+          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <nav>
+      <div class="nav nav-tabs mb-4 nav-justified navpatrol" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+          aria-controls="nav-home" aria-selected="true">Home</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+          aria-controls="nav-profile" aria-selected="false">Map</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+          aria-controls="nav-contact" aria-selected="false">Extras</a>
+      </div>
+    </nav>
+
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg">
-                <img src="/assets/img/LogoSmartBot.png" class="btn imglogo" alt="" srcset="" data-toggle="modal" data-target="#logoutModal">
-              
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                      <h1 class="nav-link titulo">Smart Intruders Detector</h1>
-                    </li>
-                    <li><button class="btn btn-light btn-logout" onclick="cierraSesion()">Cerrar Sesión</button></li>
-                  </ul>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card shadow mb-4">
+                <div
+                  class="card-header bg-gradient-dark py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-light">Point
+                    Cloud Transmition at Real Time</h6>
                 </div>
-              </nav>
+                <div class="card-body row">
+                  <div class="col-md-9 cloud text-center">
+                    <h3 class="p-2 text-dark">Points Cloud Streaming</h3>
+                    <div id="viewer" class="mt-3"></div>
+                  </div>
+                  <div class="col-md-3 infopatrol">
+                    <div class="card shadow patrolcard mb-4">
+                      <!-- Card Header - Dropdown -->
+                      <div
+                        class="card-header bg-gradient-dark py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-light">Streaming</h6>
+                      </div>
+                      <!-- Card Body -->
+                      <div class="card-body">
+                        <div class="interior">
+                          <img id="streamingVideo" src="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card shadow patrolcard mb-4">
+                      <!-- Card Header - Dropdown -->
+                      <div
+                        class="card-header bg-gradient-dark py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-light">Picture</h6>
+                      </div>
+                      <!-- Card Body -->
+                      <div class="card-body">
+                        <div class="interior">
+                          <img id="threatDetectedPhoto" src="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="card shadow patrolcard mb-4">
+                      <!-- Card Header - Dropdown -->
+                      <div
+                        class="card-header bg-gradient-dark py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-light">Metrics</h6>
+                      </div>
+                      <!-- Card Body -->
+                      <div class="card-body row">
+                        <div class="col-md-4">
+                          <div class="card shadow">
+                            <div class="card-header bg-gradient-dark py-3 d-flex align-items-center">
+                              <h6 class="m-0 font-weight-bold text-light">Information 1</h6>
+                            </div>
+                            <div class="card-body">
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card shadow">
+                            <div class="card-header bg-gradient-dark py-3 d-flex align-items-center">
+                              <h6 class="m-0 font-weight-bold text-light">Information 2</h6>
+                            </div>
+                            <div class="card-body">
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="card shadow">
+                            <div class="card-header bg-gradient-dark py-3 d-flex align-items-center">
+                              <h6 class="m-0 font-weight-bold text-light">Information 3</h6>  
+                            </div>
+                            <div class="card-body">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="vh-100"></div>
+      </div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="vh-100"></div>
+      </div>
     </div>
 
-<section class="container-fluid main-content">
-    <div class="row" >
-        <div class="col-md-8 laser pt-5">
-            <div class="cloud text-center">
-                <h3 class="p-2">Points Cloud Streaming</h3>
-                <div id="viewer" class="mt-3"></div>
-            </div>
-        </div>
-        <div class="col-md-4 foto ">
-            <div class="interior p-2 mb-5">
-                <h5>Amenaza detectada</h5>
-                <img id="threatDetectedPhoto" src="" >
-            </div>
-            <div class="interior p-2 mt-4">
-                <h5>Streaming Cámara</h5>
-                <img id="streamingVideo" src="" >
-            </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="metrics main-content">
-    <div class="row">
-        <div class="col-sm-12 col-md-6 stadistics text-center"></div>
-        <div class="col-sm-12 col-md-6 stadistics text-center"></div>
-    </div>
-</section>
-<footer class="sticky-footer bg-gradient-warning text-center p-3">
-    <p class="mb-0">Copyright &copy; Smartbot 2021</p>
-</footer>
-    <script src="/assets/js/jQuery.js"></script>
-    <script src="/assets/js/bootstrap.js"></script>
-    <script src="/scripts/patrolScript.js"></script>
+    <footer class="sticky-footer bg-gradient-dark text-center p-3">
+      <p class="mb-0">Copyright &copy; Smartbot 2021</p>
+    </footer>
+  </div>
+
+  <script src="/assets/js/jQuery.js"></script>
+  <script src="/assets/js/bootstrap.js"></script>
+  <script src="/scripts/patrolScript.js"></script>
 </body>
+
 </html>

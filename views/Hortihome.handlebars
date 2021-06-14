@@ -15,9 +15,10 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/mainStyle.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 
-<body>
+<body onload="init()">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Content Wrapper -->
@@ -34,7 +35,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                   <!-- Topbar Navbar -->
+                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
@@ -59,15 +60,15 @@
                                 </form>
                             </div>
                         </li>
-                        <li><a href="/"><img src="/assets/img/LogoSmartBot.png" alt="" srcset="" class="pt-2 logoNav"></li></a>
+                        <li><a href="/"><img src="/assets/img/LogoSmartBot.png" alt="" srcset="" class="pt-2 logoNav">
+                        </li></a>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-white small">Hortifrut User</span>
-                                <img class="img-profile rounded-circle"
-                                    src="/assets/img/logo-hortifrut.jpg">
+                                <img class="img-profile rounded-circle" src="/assets/img/logo-hortifrut.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -100,14 +101,16 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 titulo">
-                        <h1 class="h1 m-auto text-gray-900">Sistema de control Hortirover</h1> 
+                        <h1 class="h1 m-auto text-gray-900">Sistema de control Hortirover</h1>
+                    </div>
+                    <div class="d-none align-items-center justify-content-between mb-4 titulo2">
+                        <h1 class="h1 m-auto text-gray-900">Sistema de navegación Hortirover</h1>
                     </div>
                     <!-- Content Row -->
-
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-9 col-lg-8">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -117,14 +120,14 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="map-area">
-         
+                                        <div id="viewer"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                       
-                        <div class="col-xl-4 col-lg-5">
+
+                        <div class="col-xl-3 col-lg-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -165,7 +168,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Content Column -->
@@ -177,7 +179,7 @@
                                     <h6 class="m-0 font-weight-bold text-light">Stadistics</h6>
                                 </div>
                                 <div class="card-body">
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -196,9 +198,78 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="div-control" class="row d-none">
+                        <div class="col-md-12 titulo2">
+                            <h3 class="text-center">Sistema de navegación Hortirover</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header bg-gradient-dark py-3">
+                                    <h6 class="m-0 font-weight-bold text-light">Control de movimiento Hortirover</h6>
+                                </div>
+                                <div class="card-body row">
+                                    <div class="col-md-9 control-viewer">
+                                        <div id="viewer-map"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header bg-gradient-dark py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-light">Controles navegación</h6>
+                                            </div>
+                                            <!-- Card Body -->
+                                            <div class="card-body row">
+                                                    <div class="col-md-12 text-center">
+                                                        <button class="btn btn-control" onclick="forward()">
+                                                            <i class="fas fa-arrow-circle-up"></i>
+                                                        </button>
+                                                        <br /><br />
+                                                    </div>
+                                                    <div class="col-md-4 text-center">
+                                                        <button class="btn btn-control" onclick="turnleft()">
+                                                            <i class="fas fa-arrow-circle-left"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-4 text-center">
+                                                        <button class="btn btn-stop-control" onclick="stop()">
+                                                            <i class="far fa-stop-circle"></i>
+                                                        </button>
+                                                        <br /><br />
+                                                    </div>
+                                                    <div class="col-md-4 text-center">
+                                                        <button class="btn btn-control" onclick="turnright()">
+                                                            <i class="fas fa-arrow-circle-right"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-12 text-center">
+                                                        <button class="btn btn-control" onclick="backward()">
+                                                            <i class="fas fa-arrow-circle-down"></i>
+                                                        </button>
+                                                    </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header bg-gradient-dark py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-light">Logs (published messages)</h6>
+                                            </div>
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                <div class="main-info pt-4 pb-2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
@@ -211,131 +282,130 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-                <!-- Sidebar -->
-                <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                    <!-- Sidebar - Brand -->
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                            
-                        </div>
-                        <div class="sidebar-brand-text mx-3">Hortirover Admin</div>
-                    </a>
-        
-                    <!-- Divider -->
-                    <hr class="sidebar-divider my-0">
-        
-                    <!-- Nav Item - Dashboard -->
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Dashboard</span></a>
-                    </li>
-        
-                    <!-- Divider -->
-                    <hr class="sidebar-divider">
-        
-                    <!-- Heading -->
-                    <div class="sidebar-heading">
-                        Interface
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+
+                </div>
+                <div class="sidebar-brand-text mx-3">Hortirover Admin</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Menú Item 1</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
-        
-                    <!-- Nav Item - Pages Collapse Menu -->
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                            aria-expanded="true" aria-controls="collapseTwo">
-                            <i class="fas fa-fw fa-cog"></i>
-                            <span>Menú Item 1</span>
-                        </a>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Custom Components:</h6>
-                                <a class="collapse-item" href="buttons.html">Buttons</a>
-                                <a class="collapse-item" href="cards.html">Cards</a>
-                            </div>
-                        </div>
-                    </li>
-        
-                    <!-- Nav Item - Utilities Collapse Menu -->
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                            aria-expanded="true" aria-controls="collapseUtilities">
-                            <i class="fas fa-fw fa-wrench"></i>
-                            <span>Menú Item 2</span>
-                        </a>
-                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                            data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Custom Utilities:</h6>
-                                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                                <a class="collapse-item" href="utilities-other.html">Other</a>
-                            </div>
-                        </div>
-                    </li>
-        
-                    <!-- Divider -->
-                    <hr class="sidebar-divider">
-        
-                    <!-- Heading -->
-                    <div class="sidebar-heading">
-                        Complementos
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Menú Item 2</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
-        
-                    <!-- Nav Item - Pages Collapse Menu -->
-                    <li class="nav-item">
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                            aria-expanded="true" aria-controls="collapsePages">
-                            <i class="fas fa-fw fa-folder"></i>
-                            <span>Menú Item 3</span>
-                        </a>
-                        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">
-                                <h6 class="collapse-header">Login Screens:</h6>
-                                <a class="collapse-item" href="login.html">Login</a>
-                                <a class="collapse-item" href="register.html">Register</a>
-                                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                                <div class="collapse-divider"></div>
-                                <h6 class="collapse-header">Other Pages:</h6>
-                                <a class="collapse-item" href="404.html">404 Page</a>
-                                <a class="collapse-item" href="blank.html">Blank Page</a>
-                            </div>
-                        </div>
-                    </li>
-        
-                    <!-- Nav Item - Charts -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="charts.html">
-                            <i class="fas fa-fw fa-chart-area"></i>
-                            <span>Menú Item 5</span></a>
-                    </li>
-        
-                    <!-- Nav Item - Tables -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="tables.html">
-                            <i class="fas fa-fw fa-table"></i>
-                            <span>Menú Item 6</span></a>
-                    </li>
-        
-                    <!-- Divider -->
-                    <hr class="sidebar-divider d-none d-md-block">
-        
-                    <!-- Sidebar Toggler (Sidebar) -->
-                    <div class="text-center d-none d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Complementos
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Menú Item 3</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
-        
-                    <!-- Sidebar Message -->
-                    <div class="sidebar-card">
-                        <img class="sidebar-card-illustration mb-2" src="logo-hortifrut.jpg" alt="">
-                    </div>
-        
-                </ul>
-                <!-- End of Sidebar -->
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Menú Item 5</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Menú Item 6</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card">
+                <img class="sidebar-card-illustration mb-2" src="logo-hortifrut.jpg" alt="">
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
     </div>
     <!-- End of Page Wrapper -->
 

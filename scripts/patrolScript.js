@@ -6,8 +6,8 @@ const init = () => {
 
   viewer = new ROS3D.Viewer({
     divID: "viewer",
-    width: 1000,
-    height: 750,
+    width: 1100,
+    height: 650,
     antialias: true,
     background: "#676767",
   });
@@ -57,14 +57,14 @@ const init = () => {
     lifetime: 3000,
   });
 
-  var listener = new ROSLIB.Topic({
+  let listener = new ROSLIB.Topic({
     ros: ros,
     name: "/patrol/image_raw/compressed",
     messageType: "/sensor_msgs/CompressedImage",
   });
 
   listener.subscribe(function (msg) {
-    var imgdata = "data:image/jpeg;base64," + msg.data;
+    let imgdata = "data:image/jpeg;base64," + msg.data;
     imgArray.push(imgdata);
     document.getElementById("threatDetectedPhoto").setAttribute("src", imgdata);
   });
