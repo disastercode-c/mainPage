@@ -1,7 +1,7 @@
 const init = () => {
   let imgArray = [];
   const ros = new ROSLIB.Ros({
-    url: "ws://10.10.8.15:9090",
+    url: "ws://10.10.8.69:9090",
   });
 
   viewer = new ROS3D.Viewer({
@@ -13,6 +13,16 @@ const init = () => {
   });
 
   viewer.addObject(new ROS3D.Grid());
+
+  mapviewer = new ROS3D.Viewer({
+    divID: "map2d",
+    width: 1600,
+    height: 650,
+    antialias: true,
+    background: "#000"
+  })
+
+  mapviewer.addObject(new ROS3D.Grid())
 
   tfClient = new ROSLIB.TFClient({
     ros: ros,
@@ -29,8 +39,11 @@ const init = () => {
     rootObject: viewer.scene,
     topic: "/velodyne_points",
     max_pts: 350000,
-    material: { size: 0.09},
+    material: {size: 0.09},
+    colorsrc: 'rgb',
+    colormap: (x)=>{x = x+2; return new THREE.Color(x,0,1-x)}
   });
+
 
 
   imClient = new ROS3D.MarkerClient({
@@ -53,7 +66,7 @@ const init = () => {
     ros: ros,
     tfClient,
     topic: "/persona_head",
-    rootObject: viewer.scene,
+    rootObject: mapviewer.scene,
     lifetime: 3000,
   });
 
