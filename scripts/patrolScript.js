@@ -10,7 +10,11 @@ const init = () => {
     height: 650,
     antialias: true,
     background: "#676767",
-  });
+    cameraPosition: {x:1, y:0, z:0},
+    intensity: 0.66,
+    near: 0.01,
+    far: 1000
+    });
 
   viewer.addObject(new ROS3D.Grid());
 
@@ -40,8 +44,6 @@ const init = () => {
     topic: "/velodyne_points",
     max_pts: 350000,
     material: {size: 0.09},
-    colorsrc: 'rgb',
-    colormap: (x)=>{x = x+2; return new THREE.Color(x,0,1-x)}
   });
 
 
