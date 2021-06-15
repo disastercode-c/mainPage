@@ -200,3 +200,7 @@ app.get("/door-details", async (req, res) => {
     count: countOpen,
   });
 });
+
+app.get("/patrol", (req,res)=>{
+  res.render("Patrolhome", {layout: "Patrolhome"})
+})
