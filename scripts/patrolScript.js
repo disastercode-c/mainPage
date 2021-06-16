@@ -10,20 +10,21 @@ const init = () => {
     height: 650,
     antialias: true,
     background: "#676767",
-    cameraPosition: {x:1, y:0, z:0},
-    intensity: 0.66,
-    near: 0.01,
-    far: 1000
+    cameraPose : {x:27, y:0, z: 14},
     });
 
-  viewer.addObject(new ROS3D.Grid());
+  viewer.addObject(new ROS3D.Grid({
+    cellSize:2,
+    num_cells: 12
+  }));
 
   mapviewer = new ROS3D.Viewer({
     divID: "map2d",
     width: 1600,
     height: 650,
     antialias: true,
-    background: "#000"
+    background: "#000",
+    cameraPose: {x: 0, y: 0, z: 14},
   })
 
   mapviewer.addObject(new ROS3D.Grid())
@@ -45,12 +46,12 @@ const init = () => {
     max_pts: 350000,
     material: {size: 0.09},
     colorsrc: 'rgb',
-    colormap: ()=>{
-      
+    colormap: (x)=>{
+      console.log(x)
     }
   });
 
-
+  console.log(cloudClient)
 
   imClient = new ROS3D.MarkerClient({
     ros: ros,

@@ -50395,7 +50395,7 @@ class MeshResource extends THREE$1.Object3D {
 
     // check the type
     var loader;
-    if (fileType === '.dae') {
+    if (fileType === '.dae' || fileType ==='.stl') {
       loader = new THREE$1.ColladaLoader();
       loader.log = function(message) {
         if (that.warnings) {
