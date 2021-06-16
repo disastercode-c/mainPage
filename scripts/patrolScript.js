@@ -1,7 +1,7 @@
 const init = () => {
   let imgArray = [];
   const ros = new ROSLIB.Ros({
-    url: "ws://10.10.8.69:9090",
+    url: "ws://192.168.0.206:9090",
   });
 
   viewer = new ROS3D.Viewer({
@@ -44,6 +44,10 @@ const init = () => {
     topic: "/velodyne_points",
     max_pts: 350000,
     material: {size: 0.09},
+    colorsrc: 'rgb',
+    colormap: ()=>{
+      
+    }
   });
 
 
