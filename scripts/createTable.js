@@ -21,7 +21,7 @@ const renderTable = async() => {
     $('#dataTable').DataTable({
       "paging": true,
       "pagingType": "first_last_numbers",
-      "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+      "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, 100,"All"] ],
       "search": "Buscar",
       "searchPlaceholder": 'Ingrese dato',
       "zeroRecords": "No se han encontrado coincidencias",

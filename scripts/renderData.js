@@ -56,5 +56,11 @@ const convertDateAmb = (amb)=>{
     return info;
 }
 
+const convertDoorData = (door)=>{
+    const info = door.map((e)=>{
+        return {id: e.id, doorState: e.doorState, doorTime: e.doorTime, fecha: `${dayjs(e.fecha).date()}-${dayjs(e.fecha).month()+1}-${dayjs(e.fecha).year()}`}
+    });
+    return info
+}
 
-module.exports = {getDataAmb, dateConverter, getTempServers, infoDoor,convertDateAmb}
+module.exports = {getDataAmb, dateConverter, getTempServers, infoDoor,convertDateAmb,convertDoorData}

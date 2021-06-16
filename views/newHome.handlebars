@@ -73,11 +73,6 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="/lienzo" class="nav-link">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <span>Ver recorrido</span></a>
-            </li>
-            <li class="nav-item">
                 <a href="/door-details" class="nav-link">
                     <i class="fas fa-stopwatch"></i>
                     <span>Detalle puerta</span></a>
@@ -184,7 +179,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                                                 Humedad</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">60%</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{info.humedad}}%</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-tint fa-2x" style="color:cornflowerblue"></i>
@@ -202,7 +197,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                                                 temperatura</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">24.2°C</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{info.temperatura}}°C</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-temperature-high fa-2x" style="color:firebrick"></i>
@@ -222,7 +217,7 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">523</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{info.ppm}}</div>
                                                 </div>
                                             </div>
                                         </div>

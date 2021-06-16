@@ -9,6 +9,7 @@ const {
   getTempServers,
   infoDoor,
   convertDateAmb,
+  convertDoorData
 } = require("./scripts/renderData");
 const {
   getTempServ,
@@ -24,7 +25,6 @@ const {
 } = require("./db/query");
 require("dotenv").config();
 const Handlebars = require("handlebars");
-const enviar = require("./mailer/mailer");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -155,11 +155,7 @@ app.post("/login", async (req, res) => {
 });
 
 
-app.get("/lienzo", (req, res) => {
-  res.render("lienzo", { layout: "lienzo" });
-});
-
-app.get("/alerts", async (req, res) => {
+app.get("/alerts", async(req,res)=>{
   const info = await getInfoAlarmas();
   res.status(200).send(info);
 });
