@@ -204,3 +204,4 @@ app.get("/door-details", async (req, res) => {
 app.get("/patrol", (req,res)=>{
   res.render("Patrolhome", {layout: "Patrolhome"})
 })
+

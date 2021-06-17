@@ -6140,7 +6140,7 @@ button.bg-dark:hover {
     display: none !important;
   }
   .d-lg-inline {
-    display: inline !important;
+    display: inline ;
   }
   .d-lg-inline-block {
     display: inline-block !important;

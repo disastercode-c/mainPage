@@ -51,7 +51,6 @@
 }
 
 
-
 canvas {
   max-width: 100%;
   max-height: 720px;
@@ -59,7 +58,7 @@ canvas {
 
 .imglogo {
   width: 12%;
-  margin-left: 15rem;
+  margin-left: 12%;
 }
 
 .titulo {
@@ -105,7 +104,7 @@ canvas {
 .patroltitle {
   display: inline;
   position: relative;
-  left: 7rem;
+  left: 6%;
   color: snow;
   top: 0.5rem;
   text-shadow: 1px 1px 2px black;
@@ -161,3 +160,15 @@ canvas {
 .nav .nav-link.active{
   color: #4a6f22 !important;
 }
+
+@media(min-width: 200px){
+  .patroltitle{
+    visibility: hidden;
+  }
+}
+@media(min-width:1840px){
+  .patroltitle{
+    visibility: visible;
+  }
+}
+

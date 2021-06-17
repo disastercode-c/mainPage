@@ -137,3 +137,8 @@ const cierraSesion = () => {
   localStorage.removeItem('token-usuario');
   window.location = '/'
 }
+
+const cargarImagen = async()=>{
+  const result = await axios.get("/cargarImagen")
+  
+}
