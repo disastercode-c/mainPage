@@ -25,6 +25,7 @@ const {
 require("dotenv").config();
 const Handlebars = require("handlebars");
 const enviar = require("./mailer/mailer");
+const {getImgsPatrol} = require("./db/patrol")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -202,6 +203,11 @@ app.get("/door-details", async (req, res) => {
 });
 
 app.get("/patrol", (req,res)=>{
+  
   res.render("Patrolhome", {layout: "Patrolhome"})
 })
 
+app.get("/cargarImagen", async(req,res)=>{
+  const result = await getImgsPatrol();
+  res.send(result);
+})

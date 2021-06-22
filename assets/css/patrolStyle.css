@@ -92,13 +92,13 @@ canvas {
 
 .logopatrol {
   width: 11%;
-  margin-left: 15rem;
+  margin-left: 12%;
 }
 
 .sflogo{
   width: 10%;
-  margin-left: 13rem;
-  border-radius: 25%;
+  margin-left: 10%;
+  border-radius: 20%;
 }
 
 .patroltitle {
@@ -116,7 +116,7 @@ canvas {
   height: calc(7.375rem - 2rem);
   margin: auto 1rem;
   position: relative;
-  right: 10rem;
+  right: 2%;
 }
 
 #userDropdown {
@@ -172,3 +172,14 @@ canvas {
   }
 }
 
+@media(max-width: 1640px){
+  .sflogo{
+    visibility: hidden;
+  }
+}
+
+@media(max-width: 1360px){
+  .logopatrol{
+    visibility: hidden;
+  }
+}

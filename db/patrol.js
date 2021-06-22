@@ -3,10 +3,10 @@ const dayjs = require("dayjs");
 require("dotenv").config();
 
 const sql = Mysql.createPool({
-    host: process.env.DB_HOST,
+    host: "localhost",
     user: 'root',
-    password: process.env.DB_PASS_PATROL,
-    database: "patrol",
+    password: process.env.DB_PASS,
+    database: "patroldb",
     connectionLimit: 100,
     queueLimit: 0,
     port: 3306
@@ -17,7 +17,6 @@ const getImgsPatrol = async()=>{
     {
         const query = "SELECT * FROM historico order by id desc";
         const result = await sql.query(query);
-        console.log(result[0])
         return result[0]
     }
     catch(e)
@@ -25,3 +24,5 @@ const getImgsPatrol = async()=>{
         console.error(e)
     }
 }
+
+module.exports = {getImgsPatrol}
